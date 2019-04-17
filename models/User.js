@@ -12,7 +12,6 @@ var userSchema = new mongoose.Schema({
     updatedAt: { type: Date }
 })
 
-// Aplica hash na password antes de salvar no banco
 userSchema.pre('save', function save(next) {
     const user = this
     if (!user.isModified('password')) { return next() }
@@ -25,6 +24,13 @@ userSchema.pre('save', function save(next) {
         })
     })
 })
+
+userSchema.methods.comparePassword = (password, selfPass, cb) => {
+    bcrypt.compare(password, selfPass, (err, isMatch) => {
+        selfPass = undefined
+        cb(err, isMatch)
+    })
+}
 
 
 
