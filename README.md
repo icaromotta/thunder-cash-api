@@ -1,4 +1,4 @@
-noo-authentication-boilerplateh 🤝
+noo-authentication-boilerplate 🤝
 =======================
 
 Simple authentication boilerplate for Node.js
