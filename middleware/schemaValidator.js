@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const Joi = require('joi')
-const JoiSchema = require('../models/joiSchemas')
+const JoiSchema = require('../models/joiSchemas').default
 
 // Necessário para validar dados de body
 module.exports.bodyValidator = (useJoiError = false) => {

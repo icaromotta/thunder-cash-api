@@ -10,7 +10,12 @@ const loginSchema = Joi.object().keys({
     password: Joi.string().min(6).max(30).required(),
 })
 
+const passwordSchema = Joi.object().keys({
+    password: Joi.string().min(6).max(30).required(),
+})
+
 module.exports = {
     '/register': registerSchema,
-    '/login': loginSchema
+    '/login': loginSchema,
+    '/reset-password': passwordSchema,
 }

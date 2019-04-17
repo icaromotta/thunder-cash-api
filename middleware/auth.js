@@ -24,8 +24,7 @@ module.exports = (req, res, next) => {
             return res.status(401).send({ error: 'TOKEN inválido' })
         }
 
-        req.mongoId = decoded.mongoId
-        req.userIdConductor = decoded.userIdConductor
+        req._id = decoded._id
 
         return next()
     })

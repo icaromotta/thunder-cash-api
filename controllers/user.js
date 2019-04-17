@@ -1,4 +1,3 @@
-var express = require('express')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const authConfig = require('../config/auth.json')
@@ -77,8 +76,21 @@ module.exports.forgotPassword = (req, res) => {
     })
 }
 
-module.exports.testeMiddleware = (req, res) => {
+module.exports.resetPassword = (req, res) => {
+    
+  const { password } = req.body
+    
+  User.findById(req._id, (err, user) => {
 
-    console.log('CUCUCUC');
+    if (err) { return res.status(400).send(err) }
+
+    user.set({
+      password: password,
+      updatedAt: Date.now()
+    })
+
+    user.save((user) => {
+      res.status(200).send({ message: 'Senha alterada.' })
+    })
+  })
 }
-
