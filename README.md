@@ -1,7 +1,7 @@
-noo-boilerplate-auth 🤝
+noo-authentication-boilerplateh 🤝
 =======================
 
-Authentication Boilerplate for Node.js
+Simple authentication boilerplate for Node.js
 
 This boilerplate only covers the rules for authentication. Very common tools are used in the market, such as those highlighted below.
 It is open for adding other rules and data schemas.
@@ -31,7 +31,7 @@ The easiest way to get started is to clone the repository:
 
 ```bash
 # Get the latest snapshot
-git clone link myproject
+git clone https://github.com/icaromotta/noo-authentication-boilerplateh.git myproject
 
 # Change directory
 cd myproject
