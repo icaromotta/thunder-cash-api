@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const template = fs.readFileSync(path.resolve(__dirname, '../public/mailer/mailer-template.html'), 'utf8')
 
+// The magic to send email
 module.exports.mailer = function () {
   const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
