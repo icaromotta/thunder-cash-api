@@ -7,6 +7,8 @@ This boilerplate only covers the rules for authentication. Very common tools are
 It is open for adding other rules and data schemas.
 Have a good time.
 
+If you have any question about email sending to forgot-password see docs nodemailer.
+
 Features
 --------
 - RESTfull 
