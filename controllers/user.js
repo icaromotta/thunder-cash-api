@@ -4,6 +4,7 @@ const authConfig = require('../config/auth.json')
 const User = mongoose.model('User')
 const { mailer } = require('../helpers/mailer')
 
+// Ctrl + k = 0 - minimiza blocos de codigo
 const generateToken = (params = {}) => {
     return jwt.sign(params, authConfig.secret, {
         expiresIn: 86400
@@ -77,20 +78,51 @@ module.exports.forgotPassword = (req, res) => {
 }
 
 module.exports.resetPassword = (req, res) => {
-    
-  const { password } = req.body
-    
-  User.findById(req._id, (err, user) => {
 
-    if (err) { return res.status(400).send(err) }
+    const { password } = req.body
 
-    user.set({
-      password: password,
-      updatedAt: Date.now()
+    User.findById(req._id, (err, user) => {
+
+        if (err) { return res.status(400).send(err) }
+
+        user.set({
+            password: password,
+            updatedAt: Date.now()
+        })
+
+        user.save((user) => {
+            res.status(200).send({ message: 'Senha alterada.' })
+        })
     })
+}
 
-    user.save((user) => {
-      res.status(200).send({ message: 'Senha alterada.' })
+module.exports.createsVoluntaryProfile = (req, res) => {
+    // if (err) { return res.status(400).send(err) }
+    console.log(req._id);
+    
+    User.findById(req._id, (err, user) => {
+        user.set({
+            name: req.body.name,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            phone: req.body.phone,
+            birthday: req.body.birthday,
+            age: req.body.age,
+            rg: req.body.rg,
+            cpf: req.body.cpf,
+            scholling: req.body.scholling,
+            professionalQualification: req.body.professionalQualification,
+            profession: req.body.profession,
+            skills: req.body.skills,
+            volunteerExperience: req.body.volunteerExperience,
+            axes: req.body.axes,
+            schedule: req.body.schedule,
+            police: req.body.police,
+            updatedAt: Date.now()
+        })
+
+        user.save((user) => {
+            res.status(200).send({ message: 'Perfil construído.' })
+        })
     })
-  })
 }

@@ -12,5 +12,6 @@ router.post('/register', validateRequestBody, userController.register)
 router.post('/login', validateRequestBody, userController.login)
 router.get('/forgot-password', userController.forgotPassword)
 router.post('/reset-password', validateRequestBody, authMiddleware, userController.resetPassword)
+router.post('/voluntary-profile', validateRequestBody, authMiddleware ,userController.createsVoluntaryProfile)
 
 module.exports = router;
