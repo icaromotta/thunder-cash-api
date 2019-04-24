@@ -6,11 +6,14 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
+var cors = require('cors')
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config({ path: '.env' });
+
+
 
 // models
 const User = require('./models/User')
@@ -40,6 +43,10 @@ app.set('view engine', 'jade');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+
+app.use(cors())
+
 
 app.use(logger('dev'));
 // app.use(express.json());
