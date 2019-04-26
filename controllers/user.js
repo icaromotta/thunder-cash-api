@@ -36,6 +36,7 @@ module.exports.login = (req, res) => {
     const { email, password } = req.body
 
     User.findOne({ email: email }, (err, user) => {
+    
         if (err) {
             return res.status(400).send({ error: 'error' })
         }
