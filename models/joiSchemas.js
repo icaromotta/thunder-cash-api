@@ -33,9 +33,16 @@ const profileShema = Joi.object().keys({
     police: Joi.boolean().valid(true).required(),
 })
 
+const schoolingSchema = Joi.object().keys({
+    scholling: Joi.string().min(3).max(100).required(),
+    profession: Joi.string().min(3).max(100).required(),
+    skills: Joi.array().items(Joi.string()) 
+})
+
 module.exports = {
     '/register': registerSchema,
     '/login': loginSchema,
     '/reset-password': passwordSchema,
-    '/voluntary-profile': profileShema
+    '/voluntary-profile': profileShema,
+    '/add-schooling': schoolingSchema
 }
