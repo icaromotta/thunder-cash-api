@@ -1,12 +1,6 @@
 const bcrypt = require('bcrypt-nodejs')
 const mongoose = require('mongoose')
 
-var schollingSchema = new mongoose.Schema({
-    scholling: { type: String },
-    profession: { type: String },
-    skill: [String]
-});
-
 var userSchema = new mongoose.Schema({
     name: { type: String},
     lastname: { type: String },
@@ -17,7 +11,7 @@ var userSchema = new mongoose.Schema({
     age: { type: String },
     rg: { type: String },
     cpf: { type: String },
-    scholling: [schollingSchema],
+    scholling: { type: String },
     professionalQualification: { type: String },
     profession: { type: String },
     skills: [
@@ -38,6 +32,7 @@ var userSchema = new mongoose.Schema({
     },
     updatedAt: { type: Date }
 })
+
 userSchema.pre('save', function save(next) {
     const user = this
     if (!user.isModified('password')) { return next() }
