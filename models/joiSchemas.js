@@ -16,21 +16,8 @@ const passwordSchema = Joi.object().keys({
 
 const profileShema = Joi.object().keys({
     name: Joi.string().min(3).max(100).required(),
-    lastname: Joi.string().min(3).max(100).required(),
-    address: Joi.string().min(20).max(250).required(),
-    phone: Joi.string().min(9).max(10).required(),
-    birthday: Joi.date().required(),
-    age: Joi.number().integer().min(1).max(3).required(),
-    rg: Joi.string().alphanum().min(11).max(11).required(),
     cpf: Joi.string().alphanum().min(11).max(11).required(),
-    scholling: Joi.string().min(5).max(200).required(),
-    professionalQualification: Joi.string().min(3).max(100).required(),
-    profession: Joi.string().min(3).max(100).required(),
-    skills: Joi.array().items(Joi.string()),
-    volunteerExperience: Joi.boolean().required(),
-    axes: Joi.array().items(Joi.string()),
-    schedule: Joi.array().items(Joi.string()),
-    police: Joi.boolean().valid(true).required(),
+    email: Joi.string().min(3).max(100).required()
 })
 
 module.exports = {
