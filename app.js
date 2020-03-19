@@ -13,14 +13,14 @@ var cors = require('cors')
  */
 dotenv.config({ path: '.env' });
 
-
-
 // models
 const User = require('./models/User')
+const Cashback = require('./models/Cashback')
 
 // routes
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var cashbackRouter = require('./routes/cashbacks');
 
 var app = express();
 
@@ -54,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/cashbacks', cashbackRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

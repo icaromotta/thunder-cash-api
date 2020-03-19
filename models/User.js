@@ -1,7 +1,16 @@
 const bcrypt = require('bcrypt-nodejs')
 const mongoose = require('mongoose')
 
-var userSchema = new mongoose.Schema({
+const cashbackSchema = new mongoose.Schema({
+    userCode: { type: String },
+    saleCode: { type: String },
+    saleValue: { type: Number },
+    saleDate: { type: Date },
+    refundPercentage: { type: String }, 
+    cashbackValue: { type: String }
+})
+
+const userSchema = new mongoose.Schema({
     name: { type: String},
     cpf: { type: String },
     email: { type: String },
@@ -10,7 +19,8 @@ var userSchema = new mongoose.Schema({
         type: Date,
         'default': Date.now
     },
-    updatedAt: { type: Date }
+    updatedAt: { type: Date },
+    cashback: [cashbackSchema]
 })
 
 userSchema.pre('save', function save(next) {
