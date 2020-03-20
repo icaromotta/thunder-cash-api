@@ -5,6 +5,7 @@ var cashbackSchema = new mongoose.Schema({
     saleCode: { type: String },
     saleVelue: { type: Number },
     saleDate: { type: Date },
+    status: { type: String},
     createdOn: {
         type: Date,
         'default': Date.now

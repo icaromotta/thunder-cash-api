@@ -17,10 +17,9 @@ generatesRefundAmount = (req) => {
 }
 async function addNewCashBack(req, res) {
 
-    console.log(req.body)
-
-    const { userId, saleCode, saleValue, saleDate } = req.body
+    const { userId, saleCode, saleValue, saleDate, status } = req.body
     const cashbackData = await generatesRefundAmount(req)
+    const cashackStatus = [ 'Em validação', 'Reprovado', 'Aprovado' ]
 
     User.findById({ _id: userId }, (err, user) => {
 
@@ -30,7 +29,8 @@ async function addNewCashBack(req, res) {
             saleValue: saleValue,
             saleDate: req.body.saleDate.split("-").join("/"),
             refundPercentage: cashbackData.refundPercentage,
-            cashbackValue: cashbackData.cashbackValue
+            cashbackValue: cashbackData.cashbackValue,
+            status: cashackStatus[Math.floor(Math.random() * cashackStatus.length)]
         }
 
         user.cashback.push(cashback)

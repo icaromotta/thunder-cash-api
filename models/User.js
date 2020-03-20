@@ -7,7 +7,8 @@ const cashbackSchema = new mongoose.Schema({
     saleValue: { type: Number },
     saleDate: { type: Date },
     refundPercentage: { type: String }, 
-    cashbackValue: { type: String }
+    cashbackValue: { type: String },
+    status: { type: String }
 })
 
 const userSchema = new mongoose.Schema({

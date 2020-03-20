@@ -22,7 +22,7 @@ module.exports.register = (req, res) => {
     User.create(req.body, (err, user) => {
 
       let readyAuth = {
-        email: user.email,
+        userId: user._id,
         token: generateToken({ _id: user._id })
       }
 
@@ -99,37 +99,6 @@ module.exports.resetPassword = (req, res) => {
 
     user.save((user) => {
       res.status(200).send({ message: 'Senha alterada.' })
-    })
-  })
-}
-
-module.exports.createsVoluntaryProfile = (req, res) => {
-  // if (err) { return res.status(400).send(err) }
-  console.log(req._id);
-
-  User.findById(req._id, (err, user) => {
-    user.set({
-      name: req.body.name,
-      lastname: req.body.lastname,
-      address: req.body.address,
-      phone: req.body.phone,
-      birthday: req.body.birthday,
-      age: req.body.age,
-      rg: req.body.rg,
-      cpf: req.body.cpf,
-      scholling: req.body.scholling,
-      professionalQualification: req.body.professionalQualification,
-      profession: req.body.profession,
-      skills: req.body.skills,
-      volunteerExperience: req.body.volunteerExperience,
-      axes: req.body.axes,
-      schedule: req.body.schedule,
-      police: req.body.police,
-      updatedAt: Date.now()
-    })
-
-    user.save((user) => {
-      res.status(200).send({ message: 'Perfil construído.' })
     })
   })
 }
