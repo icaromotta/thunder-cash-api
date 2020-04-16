@@ -54,9 +54,26 @@ function listCashbacks(req, res) {
         })
 }
 
+function deleteCashback(req, res) {
+
+    const { userId, cashbackId} = req.query
+    
+    User.findById({ _id: userId }, (err, user) => {
+        user.cashback.id(cashbackId).remove();
+        user.save((err, user) => {
+            if (err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json({ ok: true })
+            }
+        });
+    })
+}
+
 module.exports = {
     handleData,
     generatesRefundAmount,
     addNewCashBack,
-    listCashbacks
+    listCashbacks,
+    deleteCashback
 }
